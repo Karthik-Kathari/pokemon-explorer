@@ -1,0 +1,250 @@
+/* Reset and basic styling */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+h2, h3 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 30px;
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav h2 {
+  flex-grow: 1;
+}
+
+nav button {
+  font-size: 20px;
+  background-color: white;
+  color: #4CAF50;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.1s ease;
+}
+
+.nav-btn:hover {
+  background-color: rgb(255, 230, 0);
+  border: 2px solid blue;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Page layout */
+.page-container {
+  padding: 20px;
+}
+
+/* Cards */
+.pokemon-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.pokemon-card:hover {
+  background-color: #f0f9f0;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Details */
+.pokemon-detail {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.pokemon-detail-side > div > img {
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Container for category page */
+.category-page {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+  background-color: #f5f5f5;
+  min-height: auto;
+}
+
+/* Inline Filter + Sort Bar on top */
+.inline-sort-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background-color: #e8f5e9;
+  border-bottom: 1px solid #c8e6c9;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2e7d32;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto; /* allow horizontal scroll if really needed */
+}
+
+/* Label "Filter:" with spacing */
+.inline-sort-bar > .filter-label {
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+/* Filter inputs container for spacing */
+.filter-inputs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  min-width: 320px; /* ensure inputs don't shrink too small */
+}
+
+.inline-sort-bar input[type="text"] {
+  width: 120px; /* fixed width for inputs */
+  padding: 5px 8px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Sorting radios container */
+.sort-by {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  margin-left: auto; /* push to right */
+}
+
+.inline-sort-bar label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  user-select: none;
+  color: #388e3c;
+}
+
+/* Radios style */
+.inline-sort-bar input[type="radio"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+/* Main content: cards + detail side by side */
+.category-content {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Cards grid */
+.pokemon-grid {
+  flex: 0 0 70%; /* reduce width to 70% */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  text-transform: capitalize;
+  box-sizing: border-box;
+}
+
+/* Details side panel */
+.pokemon-detail-side {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+/* Pagination controls fixed at bottom center */
+.pagination-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  background-color: #ffffffdd;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Pagination buttons style */
+.pagination-controls button {
+  padding: 8px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+/* Pagination text */
+.pagination-controls span {
+  font-weight: 600;
+  align-self: center;
+  color: #333;
+}
