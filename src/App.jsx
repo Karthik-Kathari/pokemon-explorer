@@ -7,7 +7,7 @@ import About from "./pages/About";  // import About
 
 export default function App() {
   return (
-    <Router basename="/pokemon-explorer">
+    <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
