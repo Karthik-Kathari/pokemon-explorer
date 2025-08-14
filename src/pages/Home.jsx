@@ -23,7 +23,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ padding: "40px", textAlign: "center" }}>
+    <div style={{ padding: "40px", textAlign: "center", backgroundColor: "#F5F5F5" }}>
+      {/* Title */}
       <h1
         style={{
           fontSize: "3rem",
@@ -35,24 +36,39 @@ export default function Home() {
       >
         Pokémon World Awaits
       </h1>
-      <h3>Explore and discover your favorite Pokémon.</h3>
+
+      {/* Subtitle */}
+      <p>Explore and discover your favorite Pokémon.</p>
+
       {/* Marquee with Pokémon images */}
-      <Marquee speed={50} gradient={false} style={{ marginBottom: "50px" }}>
-        {pokemonList.map((pokemon) => (
-          <img
-            key={pokemon.id}
-            src={pokemon.img}
-            alt=""
-            style={{
-              marginTop: "90px",
-              width: "200px",
-              height: "180px",
-              objectFit: "contain",
-              marginRight: "100px",
-            }}
-          />
-        ))}
-      </Marquee>
+      <div
+        style={{
+          backgroundColor: "#F5F5F5", // Matches the page background
+          padding: "20px 0",
+          overflow: "hidden",
+        }}
+      >
+        <Marquee
+          speed={50}
+          gradient={false} // Set to false to remove edge fade
+          style={{ marginBottom: "50px" }}
+        >
+          {pokemonList.map((pokemon) => (
+            <img
+              key={pokemon.id}
+              src={pokemon.img}
+              alt={`Pokemon ${pokemon.id}`}
+              style={{
+                marginTop: "90px",
+                width: "200px",
+                height: "180px",
+                objectFit: "contain",
+                marginRight: "100px",
+              }}
+            />
+          ))}
+        </Marquee>
+      </div>
     </div>
   );
 }
