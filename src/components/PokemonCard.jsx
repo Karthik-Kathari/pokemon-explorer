@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 export default function PokemonCard({ name, url, onClick }) {
   const [sprite, setSprite] = useState("");
 
+
   useEffect(() => {
     async function fetchImage() {
       const res = await fetch(url);

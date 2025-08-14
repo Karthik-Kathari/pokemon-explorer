@@ -1,9 +1,10 @@
 /* Reset and basic styling */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:"Roboto", sans-serif;
   background-color: #f5f5f5;
 }
+
 
 h2, h3 {
   margin: 0;
@@ -193,6 +194,7 @@ nav button {
   text-transform: capitalize;
   box-sizing: border-box;
 }
+
 
 /* Details side panel */
 .pokemon-detail-side {

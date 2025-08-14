@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
 import PokemonDetail from "../components/PokemonDetail";
+import Loader from "../components/Loader";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 export default function Category() {
   const [pokemons, setPokemons] = useState([]);
@@ -12,11 +14,13 @@ export default function Category() {
     maxBaseExp: "",
   });
   const [sortKey, setSortKey] = useState("none");
+  const [loading, setLoading] = useState(false);
 
   const itemsPerPage = 8;
 
   useEffect(() => {
     async function fetchPokemons() {
+      setLoading(true);
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1008`);
       const data = await res.json();
       const detailedData = await Promise.all(
@@ -26,6 +30,7 @@ export default function Category() {
         })
       );
       setPokemons(detailedData);
+      setLoading(false);
     }
     fetchPokemons();
   }, []);
@@ -35,7 +40,8 @@ export default function Category() {
     const { maxHeight, maxWeight, maxBaseExp } = filter;
     if (maxHeight !== "" && p.height > Number(maxHeight)) return false;
     if (maxWeight !== "" && p.weight > Number(maxWeight)) return false;
-    if (maxBaseExp !== "" && p.base_experience > Number(maxBaseExp)) return false;
+    if (maxBaseExp !== "" && p.base_experience > Number(maxBaseExp))
+      return false;
     return true;
   });
 
@@ -47,7 +53,10 @@ export default function Category() {
 
   // Pagination slicing
   const startIndex = (page - 1) * itemsPerPage;
-  const currentPokemons = sortedPokemons.slice(startIndex, startIndex + itemsPerPage);
+  const currentPokemons = sortedPokemons.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
   const totalPages = Math.ceil(sortedPokemons.length / itemsPerPage);
 
   // Handlers
@@ -74,7 +83,6 @@ export default function Category() {
 
   return (
     <div className="category-page">
-
       {/* --- Inline Filter + Sort Bar --- */}
       <div className="inline-sort-bar">
         <span>Filter: </span>
@@ -142,50 +150,63 @@ export default function Category() {
             checked={sortKey === "none"}
             onChange={handleSortChange}
           />
-          None
+          Default
         </label>
       </div>
 
       {/* --- Cards and Details Side by Side --- */}
       <div className="category-content">
-        <div className="pokemon-grid">
-          {currentPokemons.length > 0 ? (
-            currentPokemons.map((p) => (
-              <PokemonCard
-                key={p.name}
-                name={p.name}
-                url={`https://pokeapi.co/api/v2/pokemon/${p.id}/`}
-                onClick={() =>
-                  setSelectedPokemonUrl(`https://pokeapi.co/api/v2/pokemon/${p.id}/`)
-                }
-              />
-            ))
-          ) : (
-            <p>No Pokémon match the filter.</p>
-          )}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="pokemon-grid">
+              {currentPokemons.length > 0 ? (
+                currentPokemons.map((p) => (
+                  <PokemonCard
+                    key={p.name}
+                    name={p.name}
+                    url={`https://pokeapi.co/api/v2/pokemon/${p.id}/`}
+                    onClick={() =>
+                      setSelectedPokemonUrl(
+                        `https://pokeapi.co/api/v2/pokemon/${p.id}/`
+                      )
+                    }
+                  />
+                ))
+              ) : (
+                <p>No Pokémon match the filter.</p>
+              )}
+            </div>
 
-        <div className="pokemon-detail-side">
-          {selectedPokemonUrl ? (
-            <PokemonDetail url={selectedPokemonUrl} />
-          ) : (
-            <div>Select a Pokémon to see details</div>
-          )}
-        </div>
+            <div className="pokemon-detail-side">
+              {selectedPokemonUrl ? (
+                <PokemonDetail url={selectedPokemonUrl} />
+              ) : (
+                <div>Select a Pokémon to see details</div>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Pagination */}
-      <div className="pagination-controls">
-        <button onClick={handlePrev} disabled={page === 1}>
-          Prev
-        </button>
-        <span>
-          Page {page} of {totalPages || 1}
-        </span>
-        <button onClick={handleNext} disabled={page === totalPages || totalPages === 0}>
-          Next
-        </button>
-      </div>
+      {!loading && (
+        <div className="pagination-controls">
+          <button onClick={handlePrev} disabled={page === 1}>
+            Prev
+          </button>
+          <span>
+            Page {page} of {totalPages || 1}
+          </span>
+          <button
+            onClick={handleNext}
+            disabled={page === totalPages || totalPages === 0}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
