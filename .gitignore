@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -8,10 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Build artifacts
 dist
 dist-ssr
 *.local
+
+# Node modules
+node_modules/
 
 # Editor directories and files
 .vscode/*
@@ -23,7 +25,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-=======
+
+# Compressed / binaries
 *.tar
 *.tar.*
 *.jar
@@ -32,10 +35,7 @@ dist-ssr
 *.deb
 *.zip
 *.tgz
-*.log
-*.log.*
 *.sig
 
+# Package folders
 pkg/
-src/
->>>>>>> 20f4f530b7ef94549b5dd7987f38c14073bbf267
