@@ -29,7 +29,7 @@ export default function Home() {
           fontSize: "3rem",
           fontWeight: "600",
           textShadow: "2px 2px 10px rgba(251, 255, 0, 1)",
-          letterSpacing: "20px",
+          letterSpacing: "21px",
           wordSpacing: "5px",
         }}
       >
